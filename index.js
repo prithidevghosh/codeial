@@ -2,14 +2,23 @@ const express=require('express');
 
 const app=express();
 const port =8000;
-const layout=require('express-ejs-layouts');
+const expresslayout=require('express-ejs-layouts');
 
-app.use(layout);
+app.use(express.static('./assets'));
+app.use(expresslayout);
+app.set('layout extractStyles',true);
+app.set('layout extractScripts',true);
+
+
+
+
 app.use('/',require('./route/index'));
 
 
 app.set('view engine','ejs');
 app.set('views','./views');
+
+
 
 app.listen(port,(e)=>{
    if(e){
